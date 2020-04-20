@@ -51,7 +51,7 @@ const Autocomplete = (props) => {
   };
 
   return (
-    <div className={styles.Autocomplete}>
+    <div className={styles.Autocomplete} data-cy="autoCompleteWrap">
       <div onKeyDown={handleInputKey} onBlur={handleInputBlur}>
         {children({ updateMatches })}
       </div>

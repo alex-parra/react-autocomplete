@@ -1,4 +1,4 @@
-const URLS = {
+export const URLS = {
   getEmployees: '/api/employees.json',
 };
 
@@ -16,7 +16,6 @@ export const getEmployees = async () => {
   } catch (error) {
     logError('API > getEmployees', error || 'Failed to load employees list');
   }
-  return employees.sort((a, b) => {
-    return `${a.first_name} ${a.last_name}`.localeCompare(`${b.first_name} ${b.last_name}`);
-  });
+
+  return employees.sort((a, b) => `${a.first_name} ${a.last_name}`.localeCompare(`${b.first_name} ${b.last_name}`));
 };
