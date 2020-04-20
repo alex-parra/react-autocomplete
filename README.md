@@ -1,6 +1,6 @@
-# React Autocomplete
+# React Autocomplete - by Alex Parra
 
-for Deel by Alex Parra
+Preview: https://react-autocomplete.now.sh/
 
 ![Preview of React Autocomplete](/preview.png?raw=true)
 
