@@ -30,7 +30,8 @@ class Autocomplete extends React.Component {
     }
 
     const matches = this.state.allOptions.filter((opt) => this.props.matcher(text, opt));
-    this.setState({ matches: matches.slice(0, this.props.maxSuggestions) });
+    const { maxSuggestions = 10 } = this.props;
+    this.setState({ matches: matches.slice(0, maxSuggestions) });
   };
 
   clearMatches = () => {
@@ -55,12 +56,12 @@ class Autocomplete extends React.Component {
     }
 
     if (ev.key === 'ArrowDown') {
-      this.setState((state) => ({ focusMatch: ((state.focusMatch || -1) + 1) % this.state.matches.length }));
+      this.setState((state) => ({ focusMatch: ((state.focusMatch ?? -1) + 1) % state.matches.length }));
     }
 
     if (ev.key === 'ArrowUp') {
       this.setState((state) => ({
-        focusMatch: (this.state.matches.length + (state.focusMatch || 0) - 1) % this.state.matches.length,
+        focusMatch: (state.matches.length + (state.focusMatch || 0) - 1) % state.matches.length,
       }));
     }
   };
