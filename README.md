@@ -2,6 +2,8 @@
 
 for Deel by Alex Parra
 
+![Preview of React Autocomplete](/preview.png?raw=true)
+
 ## Available Scripts
 
 In the project directory, you can run:
