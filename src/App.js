@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import config from './config';
 import styles from './App.module.scss';
 
-import { FieldText } from './components/FieldText';
+import { FindEmployee } from './components/FindEmployee';
 
 function App() {
-  const [employeeName, setEmployeeName] = useState('');
+  const [pickedEmployee, setPickedEmployee] = useState();
 
   return (
     <div className={styles.App}>
@@ -17,15 +17,14 @@ function App() {
         </h1>
       </header>
       <main>
-        <FieldText
-          name="findEmployee"
-          label="Employee:"
-          value={employeeName}
-          onChange={(ev) => setEmployeeName(ev.target.value)}
-          placeholder="Type employee name..."
-          autoFocus
-        />
-        <p>Employee name: "{employeeName}"</p>
+        <FindEmployee initialEmployee={pickedEmployee} onPick={setPickedEmployee} />
+
+        {pickedEmployee && (
+          <div className={styles.pickedEmployee}>
+            <h4>Selected Employee</h4>
+            <pre>{JSON.stringify(pickedEmployee, null, 2)}</pre>
+          </div>
+        )}
       </main>
     </div>
   );

@@ -25,7 +25,7 @@ module.exports = {
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
     'no-console': ['warn', { allow: ['clear', 'info', 'error', 'dir', 'trace'] }],
-    curly: ['error', 'multi', 'consistent'],
+    curly: ['error', 'multi-line', 'consistent'],
     'no-else-return': 'error',
     'no-unneeded-ternary': 'error',
     'no-useless-return': 'error',

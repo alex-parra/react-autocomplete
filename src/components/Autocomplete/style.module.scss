@@ -1,0 +1,35 @@
+.Autocomplete {
+  position: relative;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 100%;
+  background-color: #eee;
+  padding: 10px;
+
+  &:empty {
+    display: none;
+  }
+
+  > div {
+    --bgAlpha: 0.5;
+    padding: 10px;
+    background-color: rgba(#fff, var(--bgAlpha));
+
+    & + div {
+      margin-top: 2px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      --bgAlpha: 0.75;
+    }
+  }
+}
