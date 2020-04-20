@@ -5,22 +5,30 @@ import { FieldText } from '../FieldText';
 import { getEmployees } from '../../api';
 
 const fullname = (employee) => `${employee.first_name} ${employee.last_name}`.trim();
-const matchEmployee = (text, employee) => fullname(employee).toLowerCase().startsWith(text.toLowerCase());
+const matchEmployee = (text, employee) => {
+  const rx = new RegExp(text, 'gi');
+  return rx.test(fullname(employee));
+};
 
-const FindEmployee = ({ initialEmployee, onPick }) => {
-  const [employeeName, setEmployeeName] = useState(() => {
-    if (initialEmployee) return fullname(initialEmployee);
-    return '';
-  });
+const EmployeeSuggestion = ({ match }) => <p style={{ margin: 0 }}>{fullname(match)}</p>;
+
+const FindEmployee = ({ initial, onSelect }) => {
+  const [employeeName, setEmployeeName] = useState(initial ? fullname(initial) : '');
 
   const handleChange = (ev) => setEmployeeName(ev.target.value);
-  const onSelected = (employee) => {
-    setEmployeeName(fullname(employee));
-    onPick(employee);
+
+  const handleSelected = (employee) => {
+    setEmployeeName(employee ? fullname(employee) : '');
+    onSelect(employee);
   };
 
   return (
-    <Autocomplete getOptions={getEmployees} matcher={matchEmployee} onSelected={onSelected}>
+    <Autocomplete
+      getOptions={getEmployees}
+      matcher={matchEmployee}
+      onSelect={handleSelected}
+      matchComponent={EmployeeSuggestion}
+    >
       {({ updateMatches }) => {
         const onChange = (ev) => {
           handleChange(ev);

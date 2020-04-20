@@ -16,5 +16,7 @@ export const getEmployees = async () => {
   } catch (error) {
     logError('API > getEmployees', error || 'Failed to load employees list');
   }
-  return employees;
+  return employees.sort((a, b) => {
+    return `${a.first_name} ${a.last_name}`.localeCompare(`${b.first_name} ${b.last_name}`);
+  });
 };

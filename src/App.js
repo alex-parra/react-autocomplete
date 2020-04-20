@@ -6,7 +6,7 @@ import styles from './App.module.scss';
 import { FindEmployee } from './components/FindEmployee';
 
 function App() {
-  const [pickedEmployee, setPickedEmployee] = useState();
+  const [employee, setEmployee] = useState();
 
   return (
     <div className={styles.App}>
@@ -17,14 +17,13 @@ function App() {
         </h1>
       </header>
       <main>
-        <FindEmployee initialEmployee={pickedEmployee} onPick={setPickedEmployee} />
+        <FindEmployee initial={employee} onSelect={setEmployee} />
 
-        {pickedEmployee && (
-          <div className={styles.pickedEmployee}>
-            <h4>Selected Employee</h4>
-            <pre>{JSON.stringify(pickedEmployee, null, 2)}</pre>
-          </div>
-        )}
+        <div className={styles.pickedEmployee}>
+          <h4>Employee Details</h4>
+          {employee && <pre>{JSON.stringify(employee, null, 2)}</pre>}
+          {!employee && <small>Please select an employee above</small>}
+        </div>
       </main>
     </div>
   );

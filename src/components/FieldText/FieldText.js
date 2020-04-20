@@ -20,6 +20,7 @@ const FieldText = (props) => {
         onChange={handleChange}
         placeholder={placeholder}
         autoFocus={autoFocus}
+        autoComplete="off"
       />
     </div>
   );
