@@ -43,6 +43,7 @@ const FindEmployee = ({ initial, onSelect }) => {
             onChange={onChange}
             placeholder="Type employee name..."
             autoFocus
+            data-testid="findEmployee"
           />
         );
       }}

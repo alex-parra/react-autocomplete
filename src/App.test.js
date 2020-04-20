@@ -12,4 +12,7 @@ test('renders app header', async () => {
 
   const appTitle = app.getByText(config.app.title);
   expect(appTitle).toBeInTheDocument();
+
+  const findEmployee = app.getByTestId('findEmployee');
+  expect(findEmployee).toBeInTheDocument();
 });
