@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import config from './config';
 import styles from './App.module.scss';
 
+import { FieldText } from './components/FieldText';
+
 function App() {
+  const [employeeName, setEmployeeName] = useState('');
+
   return (
     <div className={styles.App}>
       <header>
@@ -12,7 +16,17 @@ function App() {
           <small>{config.app.subTitle}</small>
         </h1>
       </header>
-      <main>-- main content --</main>
+      <main>
+        <FieldText
+          name="findEmployee"
+          label="Employee:"
+          value={employeeName}
+          onChange={(ev) => setEmployeeName(ev.target.value)}
+          placeholder="Type employee name..."
+          autoFocus
+        />
+        <p>Employee name: "{employeeName}"</p>
+      </main>
     </div>
   );
 }
