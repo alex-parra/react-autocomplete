@@ -51,3 +51,15 @@
     }
   }
 }
+
+.toggles {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+
+  label {
+    display: flex;
+    align-items: center;
+    padding: 3px;
+  }
+}

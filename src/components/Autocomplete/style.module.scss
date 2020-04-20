@@ -46,3 +46,10 @@
 .focused {
   background-color: var(--bgFocused) !important;
 }
+
+.compHint {
+  text-align: center;
+  display: block;
+  font-size: 0.8rem;
+  color: #888;
+}

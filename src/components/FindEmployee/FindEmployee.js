@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Autocomplete } from '../Autocomplete';
+import { AutocompleteFN, AutocompleteCls } from '../Autocomplete';
 import { FieldText } from '../FieldText';
 import { getEmployees } from '../../api';
 
@@ -12,7 +12,7 @@ const matchEmployee = (text, employee) => {
 
 const EmployeeSuggestion = ({ match }) => <p style={{ margin: 0 }}>{fullname(match)}</p>;
 
-const FindEmployee = ({ initial, onSelect }) => {
+const FindEmployee = ({ initial, onSelect, mode = 'fn' }) => {
   const [employeeName, setEmployeeName] = useState(initial ? fullname(initial) : '');
 
   const handleChange = (ev) => setEmployeeName(ev.target.value);
@@ -21,6 +21,8 @@ const FindEmployee = ({ initial, onSelect }) => {
     setEmployeeName(employee ? fullname(employee) : '');
     onSelect(employee);
   };
+
+  const Autocomplete = mode === 'fn' ? AutocompleteFN : AutocompleteCls;
 
   return (
     <Autocomplete

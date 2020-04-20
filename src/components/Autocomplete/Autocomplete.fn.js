@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import styles from './style.module.scss';
 
 const Autocomplete = (props) => {
   const { getOptions, matcher, onSelect, children, matchComponent, maxSuggestions = 10 } = props;
 
+  const blurTimeout = useRef(null);
   const [allOptions, setAllOptions] = useState([]);
   const [matches, setMatches] = useState([]);
   const [focusMatch, setFocusMatch] = useState();
+
+  useEffect(() => {
+    return () => clearTimeout(blurTimeout.current);
+  });
 
   useEffect(() => {
     getOptions().then(setAllOptions);
@@ -46,12 +51,12 @@ const Autocomplete = (props) => {
   };
 
   const handleInputBlur = () => {
-    // TODO: possible memory leak here
-    setTimeout(() => clearMatches(), 100);
+    blurTimeout.current = setTimeout(() => clearMatches(), 100);
   };
 
   return (
     <div className={styles.Autocomplete} data-cy="autoCompleteWrap">
+      <span className={styles.compHint}>Functional Autocomplete</span>
       <div onKeyDown={handleInputKey} onBlur={handleInputBlur}>
         {children({ updateMatches })}
       </div>
