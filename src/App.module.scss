@@ -1,0 +1,32 @@
+.App {
+  padding: 20px;
+
+  > header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10vmax;
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      text-align: center;
+      line-height: 1.1;
+      font-weight: bold;
+    }
+
+    h1 small {
+      display: block;
+      font-size: 0.75em;
+      color: #555;
+      font-weight: normal;
+    }
+  }
+
+  > main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+  }
+}
